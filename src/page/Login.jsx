@@ -4,7 +4,7 @@ import L_logo from "../asset/logo/L_logo.png";
 import OtpAuthPopup from "../components/auth/OtpAuthPopup";
 import PopupBg from "../components/common/PopupBg";
 
-export default function Login() {
+export default function Login({ setToken }) {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [emailAlarm, setEmailAlarm] = useState("");
@@ -20,6 +20,10 @@ export default function Login() {
   function onClickLoginBtn() {
     setPwAlarm("The password you have entered does not coincide");
     setOtpAuthPopup(true);
+  }
+
+  function onKeyDown(e) {
+    if (e.key === "Enter") onClickLoginBtn();
   }
 
   useEffect(() => {
@@ -49,6 +53,7 @@ export default function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Account"
+                    onKeyDown={onKeyDown}
                   />
                 </div>
 
@@ -62,6 +67,7 @@ export default function Login() {
                     value={pw}
                     onChange={(e) => setPw(e.target.value)}
                     placeholder="Password"
+                    onKeyDown={onKeyDown}
                   />
                 </div>
 
@@ -82,7 +88,7 @@ export default function Login() {
 
       {otpAuthPopup && (
         <>
-          <OtpAuthPopup off={setOtpAuthPopup} />
+          <OtpAuthPopup setToken={setToken} off={setOtpAuthPopup} />
           <PopupBg off={setOtpAuthPopup} />
         </>
       )}
@@ -95,6 +101,7 @@ const LoginBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: #000;
   background: #fff;
 
   .loginSec {

@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   *{
     padding:0;
     margin:0;
-    font-family: "Oxygen", sans-serif;
+    font-family: 'Inter', sans-serif;
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;

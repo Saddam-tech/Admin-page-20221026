@@ -1,23 +1,15 @@
 import { useState } from "react";
-import { useEffect } from "react";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+import NavBar from "./components/aside/NavBar";
 import EventListener from "./components/common/EventListener";
 import GlobalStyle from "./components/common/globalStyle";
+import DefaultHeader from "./components/header/DefaultHeader";
 import DashBoard from "./page/DashBoard";
 import Login from "./page/Login";
 
 export default function App() {
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    console.log(localStorage.getItem("token"));
-    setToken(localStorage.getItem("token"));
-  }, [localStorage.getItem("token")]);
-
-  useEffect(() => {
-    console.log(localStorage.getItem("token"));
-  }, [localStorage.getItem("token")]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   return (
     <AppBox className="appBox">
@@ -28,15 +20,7 @@ export default function App() {
         crossOrigin="true"
       />
       <link
-        href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;600;700&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet"
       />
 
@@ -45,11 +29,17 @@ export default function App() {
         <GlobalStyle />
 
         {token ? (
-          <Routes>
-            <Route path="/" element={<DashBoard />} />
-          </Routes>
+          <>
+            <NavBar />
+            <DefaultHeader />
+
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard" element={<DashBoard />} />
+            </Routes>
+          </>
         ) : (
-          <Login />
+          <Login setToken={setToken} />
         )}
       </HashRouter>
     </AppBox>
@@ -58,5 +48,8 @@ export default function App() {
 
 const AppBox = styled.div`
   height: 100vh;
+  padding: 80px 0 0 240px;
+  color: #fff;
   background: #000;
+  position: relative;
 `;

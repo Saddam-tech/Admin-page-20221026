@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import I_warningTriangle_black from "../../asset/icon/I_warningTriangle_black.svg";
 
-export default function OtpAuthPopup({ off }) {
+export default function OtpAuthPopup({ setToken, off }) {
   const navigate = useNavigate();
 
   const [code, setCode] = useState("");
@@ -12,6 +12,7 @@ export default function OtpAuthPopup({ off }) {
     off();
     navigate("/");
     localStorage.setItem("token", "token");
+    setToken("token");
   }
 
   return (
