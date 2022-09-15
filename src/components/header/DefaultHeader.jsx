@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import I_noti from "../../asset/icon/I_noti.svg";
 import E_icon from "../../asset/example/header/E_icon.svg";
-import I_dnArwWhite from "../../asset/icon/I_dnArwWhite.svg";
+import I_dnArw_white from "../../asset/icon/I_dnArw_white.svg";
 
 export default function DefaultHeader() {
   return (
@@ -17,7 +17,7 @@ export default function DefaultHeader() {
           <p>admin@gmail.com</p>
         </div>
 
-        <img className="arw" src={I_dnArwWhite} alt="" />
+        <img className="arw" src={I_dnArw_white} alt="" />
       </button>
     </DefaultHeaderBox>
   );
@@ -31,11 +31,13 @@ const DefaultHeaderBox = styled.header`
   height: 80px;
   padding: 0 48px;
   color: #fff;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   top: 0;
   right: 0;
   left: 0;
   position: fixed;
-  z-index: 3;
+  z-index: 30;
 
   .alarmBtn {
     opacity: 0.25;

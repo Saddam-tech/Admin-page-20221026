@@ -14,6 +14,11 @@ export const D_navList = [
   {
     text: "Member",
     icon: I_member,
+    url: "member",
+    det: [
+      { text: "In use Users", url: "use" },
+      { text: "Secession Users", url: "secession" },
+    ],
   },
   {
     text: "CER",

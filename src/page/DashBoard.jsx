@@ -117,8 +117,8 @@ const DashBoardBox = styled.main`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 50px 0 0 40px;
-  max-width: 1520px;
+  width: 1480px;
+  margin: 50px 0 0 40px;
 
   .chartList {
     display: flex;

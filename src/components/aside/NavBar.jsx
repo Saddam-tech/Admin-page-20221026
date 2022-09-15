@@ -39,10 +39,10 @@ export default function NavBar() {
                     className={`${
                       detV.url.indexOf(pathname[2]) !== -1 && "on"
                     }`}
-                    onClick={() => navigate(detV.url)}
                   >
-                    <span className="dot" />
-                    <p>{detV.text}</p>
+                    <p onClick={() => navigate(`/${v.url}/${detV.url}`)}>
+                      {detV.text}
+                    </p>
                   </li>
                 ))}
             </ul>
@@ -60,13 +60,14 @@ const NavBarBox = styled.aside`
   gap: 34px;
   width: 240px;
   padding: 66px 0 0 0;
+  font-size: 14px;
   color: #fff;
   background: #202020;
   top: 0;
   bottom: 0;
   left: 0;
   position: fixed;
-  z-index: 3;
+  z-index: 31;
 
   .logoBtn {
     display: inline-block;
@@ -86,6 +87,10 @@ const NavBarBox = styled.aside`
       border-radius: 10px 0px 0px 10px;
       opacity: 0.25;
 
+      &:hover {
+        opacity: 1;
+      }
+
       &.on {
         opacity: 1;
         background: #000;
@@ -101,6 +106,28 @@ const NavBarBox = styled.aside`
 
           img {
             width: 20px;
+          }
+        }
+      }
+
+      .detList {
+        li {
+          display: flex;
+          align-items: center;
+          height: 40px;
+          padding: 0 0 0 30px;
+          opacity: 0.25;
+
+          &:hover {
+            opacity: 1;
+          }
+
+          &.on {
+            opacity: 1;
+          }
+
+          p {
+            cursor: pointer;
           }
         }
       }

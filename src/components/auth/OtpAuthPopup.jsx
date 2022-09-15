@@ -55,6 +55,8 @@ const OtpAuthPopupBox = styled.section`
   gap: 40px;
   width: 440px;
   padding: 40px;
+  color: #000;
+  background: #fff;
 
   .titleBox {
     display: flex;

@@ -47,12 +47,18 @@ const CerRegistBox = styled.article`
 
   .list {
     li {
-      padding: 0 10px;
       display: flex;
       align-items: center;
       height: 44px;
-      border-bottom: 1px solid #333;
+      padding: 0 10px;
       color: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid #333;
+
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
     }
   }
 

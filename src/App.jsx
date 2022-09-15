@@ -7,12 +7,14 @@ import GlobalStyle from "./components/common/globalStyle";
 import DefaultHeader from "./components/header/DefaultHeader";
 import DashBoard from "./page/DashBoard";
 import Login from "./page/Login";
+import Member from "./router/member/Membser";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   return (
-    <AppBox className="appBox">
+    <AppBox className={`${token ? "token" : ""} appBox`}>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link
         rel="preconnect"
@@ -36,6 +38,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<DashBoard />} />
+              <Route path="/member/*" element={<Member />} />
             </Routes>
           </>
         ) : (
@@ -48,8 +51,12 @@ export default function App() {
 
 const AppBox = styled.div`
   height: 100vh;
-  padding: 80px 0 0 240px;
+  overflow-x: scroll;
   color: #fff;
   background: #000;
   position: relative;
+
+  &.token {
+    padding: 80px 160px 126px 240px;
+  }
 `;
