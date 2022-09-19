@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export default function SelectPopup({ off, list, setCont }) {
+export default function SelectPopup({ off, list, setCont, dark }) {
   function onClickCont(v) {
     if (setCont) setCont(v);
     if (off) off();
   }
 
   return (
-    <PselectPopupBox className="selectPopup">
+    <PselectPopupBox className={`${dark ? "dark" : ""} selectPopup`}>
       {list.map((v, i) => (
         <li key={i} onClick={() => onClickCont(v)}>
           <p>{v}</p>
@@ -29,6 +29,10 @@ const PselectPopupBox = styled.ul`
   position: absolute;
   overflow-y: scroll;
   z-index: 60;
+
+  &.dark {
+    border: 1px solid #ddd;
+  }
 
   li {
     display: flex;

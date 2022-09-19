@@ -1,16 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
-import I_dnArw_white from "../../asset/icon/I_dnArw_white.svg";
-import I_chk_white from "../../asset/icon/I_chk_white.svg";
-import I_chk_gray from "../../asset/icon/I_chk_gray.svg";
-import E_idCard from "../../asset/example/member/E_idCard.png";
-import PopupBg from "../common/PopupBg";
-import SelectPopup from "../common/SelectPopup";
+import I_dnArw_white from "../../../asset/icon/I_dnArw_white.svg";
+import I_chk_white from "../../../asset/icon/I_chk_white.svg";
+import I_chk_gray from "../../../asset/icon/I_chk_gray.svg";
+import PopupBg from "../../common/PopupBg";
+import SelectPopup from "../../common/SelectPopup";
 import {
   D_infoStatusList,
   D_nationalList,
   D_userInfoCategoryList,
-} from "../../data/D_member";
+} from "../../../data/D_member";
+import Document from "./Document";
 
 export default function UserInfo() {
   const [status, setStatus] = useState(D_infoStatusList[0]);
@@ -187,37 +187,9 @@ export default function UserInfo() {
         </article>
       </section>
 
-      <section className="editSec">
-        <article className="topBar">
-          <ul className="contCategoryList">
-            {D_userInfoCategoryList.map((v, i) => (
-              <li
-                key={i}
-                className={`${category === v ? "on" : ""}`}
-                onClick={() => setCategory(v)}
-              >
-                {v}
-              </li>
-            ))}
-          </ul>
-
-          <button className="saveBtn" onClick={() => {}}>
-            SAVE
-          </button>
-        </article>
-
-        <article className="contArea">
-          <ul className="contList">
-            <li>
-              <p className="key">Government issued ID (Front)</p>
-
-              <div className={`on imgBox`}>
-                <img src={E_idCard} alt="" />
-              </div>
-            </li>
-          </ul>
-        </article>
-      </section>
+      {category === "Documents" && (
+        <Document category={category} setCategory={setCategory} />
+      )}
     </UserInfoBox>
   );
 }
@@ -424,89 +396,6 @@ const UserInfoBox = styled.main`
                   }
                 }
               }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .editSec {
-    margin: 60px 0 0;
-    background: #202020;
-    box-shadow: 0px 4px 14px rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
-
-    .topBar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      height: 72px;
-      font-size: 16px;
-      font-weight: 600;
-      border-bottom: 1px solid #333333;
-
-      .contCategoryList {
-        li {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 44px;
-          padding: 0 25px;
-          border: 1px solid #333;
-          border-radius: 10px;
-
-          &.on {
-            color: #333;
-            background: #fff;
-          }
-        }
-      }
-
-      .saveBtn {
-        width: 200px;
-        height: 44px;
-        background: #4c96d9;
-        border-radius: 10px;
-      }
-    }
-
-    .contArea {
-      display: flex;
-      justify-content: center;
-      padding: 34px 0 46px;
-
-      .contList {
-        display: flex;
-        gap: 100px;
-
-        li {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 384px;
-
-          .key {
-            font-size: 16px;
-            font-weight: 500;
-          }
-
-          .imgBox {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 240px;
-            padding: 15px 20px;
-            margin: 18px 0 0;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-
-            &.on {
-              border: unset;
-              background: #fff;
             }
           }
         }

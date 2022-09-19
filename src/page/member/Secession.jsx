@@ -79,7 +79,7 @@ export default function Secession() {
                   <ReactDatePicker
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
-                    customInput={<ExampleCustomInput />}
+                    customInput={<CustomInput />}
                   />
                 </span>
 
@@ -89,7 +89,7 @@ export default function Secession() {
                   <ReactDatePicker
                     selected={endDate}
                     onChange={(date) => setEndDate(date)}
-                    customInput={<ExampleCustomInput />}
+                    customInput={<CustomInput />}
                   />
                 </span>
               </div>
@@ -344,7 +344,7 @@ const SecessionBox = styled.main`
   }
 `;
 
-const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+const CustomInput = forwardRef(({ value, onClick }, ref) => (
   <button className="customInput" onClick={onClick} ref={ref}>
     <p>{moment(value).format("YYYY-MM-DD")}</p>
 

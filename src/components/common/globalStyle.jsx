@@ -129,6 +129,7 @@ const GlobalStyle = createGlobalStyle`
   //custom 
   
   .defaultPopup {
+    color: #202020;
     background: #fff;
     border-radius: 16px;
     box-shadow: 0px 8px 40px 4px rgba(0, 0, 0, 0.08);

@@ -9,6 +9,7 @@ import DashBoard from "./page/DashBoard";
 import Login from "./page/Login";
 import Member from "./router/member/Membser";
 import "react-datepicker/dist/react-datepicker.css";
+import Cer from "./router/cer/Cer";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -39,6 +40,7 @@ export default function App() {
               <Route path="/" element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/member/*" element={<Member />} />
+              <Route path="/cer/*" element={<Cer />} />
             </Routes>
           </>
         ) : (

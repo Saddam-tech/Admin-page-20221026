@@ -1,38 +1,41 @@
 import styled from "styled-components";
-import { D_documentList, D_documentListHeader } from "../../data/D_dashboard";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
+import { D_rejectList, D_rejectListHeader } from "../../../data/D_cer";
 
-export default function DocumentList() {
-  const navigate = useNavigate();
-
+export default function Reject() {
   return (
-    <DocumentListBox>
+    <RejectBox>
+      <strong className="contTitle">Reject</strong>
+
       <ul className="listHeader">
-        {D_documentListHeader.map((v, i) => (
+        {D_rejectListHeader.map((v, i) => (
           <li key={i}>{v}</li>
         ))}
       </ul>
 
       <ul className="list">
-        {D_documentList.map((v, i) => (
-          <li key={i} onClick={() => navigate(`/member/det/${i}`)}>
+        {D_rejectList.map((v, i) => (
+          <li key={i}>
             <span>{v.no}</span>
             <span>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</span>
-            <span>{v.id}</span>
-            <span>{v.name}</span>
-            <span>{v.number}</span>
-            <span>{v.jurisdiction}</span>
+            <span>{v.manager}</span>
+            <span>{v.reason}</span>
           </li>
         ))}
       </ul>
-    </DocumentListBox>
+    </RejectBox>
   );
 }
 
-const DocumentListBox = styled.article`
+const RejectBox = styled.article`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 60px 0 0;
   padding: 30px;
-  font-size: 16px;
+  background: #202020;
+  box-shadow: 0px 4px 14px rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
 
   .listHeader {
     display: flex;
@@ -54,6 +57,7 @@ const DocumentListBox = styled.article`
       padding: 0 10px;
       color: rgba(255, 255, 255, 0.8);
       border-bottom: 1px solid #333;
+
       cursor: pointer;
 
       &:hover {
@@ -65,7 +69,7 @@ const DocumentListBox = styled.article`
   .listHeader li,
   .list li span {
     &:nth-of-type(1) {
-      width: 72px;
+      width: 82px;
     }
 
     &:nth-of-type(2) {
@@ -73,18 +77,10 @@ const DocumentListBox = styled.article`
     }
 
     &:nth-of-type(3) {
-      width: 254px;
+      width: 214px;
     }
 
     &:nth-of-type(4) {
-      width: 240px;
-    }
-
-    &:nth-of-type(5) {
-      width: 240px;
-    }
-
-    &:nth-of-type(6) {
       flex: 1;
     }
   }

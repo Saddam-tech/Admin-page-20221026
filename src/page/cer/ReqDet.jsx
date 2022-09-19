@@ -1,18 +1,19 @@
 import { useState } from "react";
 import styled from "styled-components";
+import ReqInfo from "../../components/cer/reqDet/ReqInfo";
 import EntityInfo from "../../components/member/entityInfo/EntityInfo";
 import UserInfo from "../../components/member/userInfo/UserInfo";
-import { D_detCategoryList } from "../../data/D_member";
+import { D_reqDetCategoryList } from "../../data/D_cer";
 
-export default function Det() {
-  const [category, setCategory] = useState(D_detCategoryList[0]);
+export default function ReqDet() {
+  const [category, setCategory] = useState(D_reqDetCategoryList[0]);
 
   return (
-    <DetBox>
-      <strong className="pageTitle">Member Approval Request</strong>
+    <ReqDetBox>
+      <strong className="pageTitle">CER registration request details</strong>
 
       <ul className="categoryList">
-        {D_detCategoryList.map((v, i) => (
+        {D_reqDetCategoryList.map((v, i) => (
           <li
             key={i}
             className={`${category === v ? "on" : ""}`}
@@ -23,13 +24,13 @@ export default function Det() {
         ))}
       </ul>
 
-      {category === "User Information" ? <UserInfo /> : <></>}
-      {category === "Entity Information" ? <EntityInfo /> : <></>}
-    </DetBox>
+      {category === "Request Info." ? <ReqInfo /> : <></>}
+      {category === "CER basic info." ? <EntityInfo /> : <></>}
+    </ReqDetBox>
   );
 }
 
-const DetBox = styled.main`
+const ReqDetBox = styled.main`
   width: 1480px;
   margin: 0 0 0 40px;
 

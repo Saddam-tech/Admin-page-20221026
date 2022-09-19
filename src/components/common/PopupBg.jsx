@@ -33,11 +33,11 @@ const PopupBgBox = styled.div`
   z-index: 50;
 
   &.bg {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.4);
   }
 
   &.blur {
-    backdrop-filter: blur(50px);
-    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 `;
