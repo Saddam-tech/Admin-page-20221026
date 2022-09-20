@@ -1,79 +1,66 @@
 import moment from "moment";
 import { forwardRef, useState } from "react";
-import ReactDatePicker from "react-datepicker";
 import styled from "styled-components";
+import I_dnArw_white from "../../asset/icon/I_dnArw_white.svg";
 import I_calanderWhite from "../../asset/icon/I_calanderWhite.svg";
-import { D_searchedList, D_searchedListHeader } from "../../data/D_member";
+import PopupBg from "../../components/common/PopupBg";
+import SelectPopup from "../../components/common/SelectPopup";
 import PageNav from "../../components/common/PageNav";
 import { useNavigate } from "react-router-dom";
+import { D_cerList, D_listSortList } from "../../data/D_cer";
+import { getExcelFile } from "../../util/Util";
+import ReactDatePicker from "react-datepicker";
+import { D_ecerList, D_ecerListHeader } from "../../data/D_ecer";
 
-export default function Secession() {
+export default function EcerList() {
   const navigate = useNavigate();
 
-  const [memberId, setMemberId] = useState("");
-  const [loginId, setLoginId] = useState("");
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [pjNum, setPjNum] = useState("");
+  const [symbol, setSymbol] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [listSort, setListSort] = useState(D_listSortList[0]);
+  const [listSortPopup, setListSortPopup] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(40);
 
+  function onClickExcelBtn() {
+    getExcelFile(D_cerList, "eCER_lists");
+  }
+
   return (
-    <SecessionBox>
-      <strong className="pageTitle">Secession Users</strong>
+    <EcerListBox>
+      <strong className="pageTitle">eCER lists</strong>
 
       <section className="searchSec">
         <article className="inputArea">
-          <p className="contTitle">Search Users</p>
+          <p className="contTitle">Search eCER</p>
 
           <ul className="inputList">
             <li className="rightBorder">
-              <div className="key">Member ID</div>
+              <div className="key">Project No</div>
               <div className="value">
                 <input
                   className="textInput"
-                  value={memberId}
-                  onChange={(e) => setMemberId(e.target.value)}
+                  value={pjNum}
+                  onChange={(e) => setPjNum(e.target.value)}
                 />
               </div>
             </li>
 
             <li>
-              <div className="key">Login ID</div>
+              <div className="key">Symbol</div>
               <div className="value">
                 <input
                   className="textInput"
-                  value={loginId}
-                  onChange={(e) => setLoginId(e.target.value)}
+                  value={symbol}
+                  onChange={(e) => setSymbol(e.target.value)}
                 />
               </div>
             </li>
 
             <li className="rightBorder">
-              <div className="key">Entity Name</div>
-              <div className="value">
-                <input
-                  className="textInput"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-            </li>
-
-            <li>
-              <div className="key">Registration Number</div>
-              <div className="value">
-                <input
-                  className="textInput"
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
-                />
-              </div>
-            </li>
-
-            <li>
-              <div className="key">Registration date</div>
+              <div className="key">Created date</div>
               <div className="value dateBox">
                 <span className="pickerBox">
                   <ReactDatePicker
@@ -103,38 +90,75 @@ export default function Secession() {
       </section>
 
       <section className="searchedSec">
-        <p className="contTitle">Entities Searched</p>
+        <article className="topArea">
+          <p className="contTitle">Total {total} Records</p>
+
+          <div className="utilBox">
+            <div className="selCont">
+              <button className="selBtn" onClick={() => setListSortPopup(true)}>
+                <p>{listSort}</p>
+                <img src={I_dnArw_white} alt="" />
+              </button>
+
+              {listSortPopup && (
+                <>
+                  <SelectPopup
+                    off={setListSortPopup}
+                    list={D_listSortList}
+                    setCont={setListSort}
+                  />
+                  <PopupBg off={setListSortPopup} />
+                </>
+              )}
+            </div>
+
+            <button className="excelBtn" onClick={onClickExcelBtn}>
+              EXCEL
+            </button>
+          </div>
+        </article>
 
         <article className="listArea">
           <ul className="listHeader">
-            {D_searchedListHeader.map((v, i) => (
+            {D_ecerListHeader.map((v, i) => (
               <li key={i}>{v}</li>
             ))}
           </ul>
 
           <ul className="list">
-            {D_searchedList.map((v, i) => (
-              <li key={i} onClick={() => navigate(`/member/det/${i}`)}>
+            {D_ecerList.map((v, i) => (
+              <li key={i}>
                 <span>
-                  <p>{v.memberId}</p>
+                  <p>{v.id}</p>
                 </span>
                 <span>
-                  <p>{v.loginId}</p>
+                  <p>{String(v.pjNum).padStart(4, "0")}</p>
+                </span>
+                <span>
+                  <p>{v.symbol}</p>
                 </span>
                 <span>
                   <p>{v.name}</p>
                 </span>
                 <span>
-                  <p>{v.number}</p>
+                  <p>{v.total.toLocaleString("eu", "US")}</p>
                 </span>
                 <span>
-                  <p>{v.status}</p>
+                  <p>{v.incineration.toLocaleString("eu", "US")}</p>
                 </span>
                 <span>
-                  <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+                  <p>{moment(v.createDate).format("YYYY.MM.DD HH:mm:SS")}</p>
                 </span>
                 <span>
-                  <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+                  <button className="detBtn" onClick={() => navigate(`${i}`)}>
+                    [Detail]
+                  </button>
+                  <button
+                    className="reqBtn"
+                    onClick={() => navigate(`/ecer/mintlist`)}
+                  >
+                    [Mint.lists]
+                  </button>
                 </span>
               </li>
             ))}
@@ -143,11 +167,11 @@ export default function Secession() {
 
         <PageNav page={page} setPage={setPage} total={total} />
       </section>
-    </SecessionBox>
+    </EcerListBox>
   );
 }
 
-const SecessionBox = styled.main`
+const EcerListBox = styled.main`
   width: 1480px;
   margin: 0 0 0 40px;
 
@@ -191,6 +215,57 @@ const SecessionBox = styled.main`
 
           &.rightBorder {
             border-right: 1px solid #333;
+          }
+
+          &.unityRow {
+            width: 1420px;
+
+            .value {
+              overflow: hidden;
+
+              .valueList {
+                display: flex;
+                align-items: center;
+                gap: 34px;
+                overflow-x: scroll;
+
+                li {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+
+                  &.on {
+                    .dotBox {
+                      border-color: #4c96d9;
+
+                      span {
+                        display: block;
+                      }
+                    }
+                  }
+
+                  .dotBox {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 16px;
+                    height: 16px;
+                    background: rgba(255, 255, 255, 0.4);
+                    border: 1px solid #d1d5db;
+                    border-radius: 50%;
+
+                    span {
+                      display: none;
+                      width: 8px;
+                      height: 8px;
+                      border-radius: inherit;
+                      background: #4c96d9;
+                    }
+                  }
+                }
+              }
+            }
           }
 
           .key {
@@ -241,10 +316,6 @@ const SecessionBox = styled.main`
               }
             }
 
-            .selectPopup {
-              left: 0;
-            }
-
             &.dateBox {
               display: flex;
               justify-content: space-between;
@@ -291,12 +362,58 @@ const SecessionBox = styled.main`
   .searchedSec {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 14px;
     padding: 30px;
     margin: 60px 0 0;
     background: #202020;
     box-shadow: 0px 4px 14px rgba(255, 255, 255, 0.06);
     border-radius: 10px;
+
+    .topArea {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .contTitle {
+      }
+
+      .utilBox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .selCont {
+          width: 244px;
+          position: relative;
+
+          .selBtn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 44px;
+            padding: 0 20px;
+            border: 1px solid #333;
+            border-radius: 10px;
+
+            &:focus-within {
+              background: rgba(255, 255, 255, 0.06);
+            }
+          }
+        }
+
+        .excelBtn {
+          width: 162px;
+          height: 44px;
+          font-size: 16px;
+          font-weight: 700;
+          color: #333;
+          background: #fff;
+          border: 1px solid #333;
+          border-radius: 10px;
+        }
+      }
+    }
 
     .listArea {
       .listHeader {
@@ -319,10 +436,17 @@ const SecessionBox = styled.main`
           padding: 0 10px;
           color: rgba(255, 255, 255, 0.8);
           border-bottom: 1px solid #333;
-          cursor: pointer;
 
-          &:hover {
-            background: rgba(255, 255, 255, 0.1);
+          span {
+            &:nth-of-type(8) {
+              display: flex;
+              gap: 14px;
+
+              .detBtn,
+              .reqBtn {
+                color: #45a7ff;
+              }
+            }
           }
         }
       }
@@ -336,30 +460,34 @@ const SecessionBox = styled.main`
         }
 
         &:nth-of-type(1) {
-          width: 126px;
+          width: 104px;
         }
 
         &:nth-of-type(2) {
-          width: 224px;
+          width: 130px;
         }
 
         &:nth-of-type(3) {
-          width: 172px;
+          width: 116px;
         }
 
         &:nth-of-type(4) {
-          width: 218px;
-        }
-
-        &:nth-of-type(5) {
           width: 240px;
         }
 
+        &:nth-of-type(5) {
+          width: 198px;
+        }
+
         &:nth-of-type(6) {
-          width: 220px;
+          width: 190px;
         }
 
         &:nth-of-type(7) {
+          width: 224px;
+        }
+
+        &:nth-of-type(8) {
           flex: 1;
         }
       }

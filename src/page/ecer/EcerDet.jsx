@@ -1,202 +1,34 @@
-import moment from "moment";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { forwardRef, useState } from "react";
-import ReactDatePicker from "react-datepicker";
-import I_calanderWhite from "../../asset/icon/I_calanderWhite.svg";
 
-export default function CerDet() {
+export default function EcerDet() {
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [industry, setIndustry] = useState("");
-  const [methodologies, setMethodologies] = useState("");
-  const [total, setTotal] = useState("");
-  const [periodStart, setPeriodStart] = useState(new Date());
-  const [periodEnd, setPeriodEnd] = useState(new Date());
-  const [expiry, setExpiry] = useState(new Date());
-  const [desc, setDesc] = useState("");
-
   return (
-    <CerDetailBox>
-      <strong className="pageTitle">CER details</strong>
+    <EcerDetBox>
+      <strong className="pageTitle">eCER details</strong>
 
       <section className="contSec">
         <article className="inputArea">
           <ul className="inputList">
             <li className="rightBorder">
-              <div className="key">Project No</div>
+              <div className="key">eCER Symbol</div>
               <div className="value">
-                <p className="text">{String(222).padStart(4, "0")}</p>
-              </div>
-            </li>
-
-            <li>
-              <div className="key">CER Type</div>
-              <div className="value">
-                <p className="text">CER</p>
-              </div>
-            </li>
-
-            <li className="rightBorder">
-              <div className="key">Project title</div>
-              <div className="value">
-                <input
-                  className="textInput"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
-            </li>
-
-            <li>
-              <div className="key">Industry</div>
-              <div className="value">
-                <input
-                  className="textInput"
-                  value={industry}
-                  onChange={(e) => setIndustry(e.target.value)}
-                />
-              </div>
-            </li>
-
-            <li className="rightBorder">
-              <div className="key">Methodologies</div>
-              <div className="value">
-                <input
-                  className="textInput"
-                  value={methodologies}
-                  onChange={(e) => setMethodologies(e.target.value)}
-                />
-              </div>
-            </li>
-
-            <li>
-              <div className="key">Total CER</div>
-              <div className="value">
-                <div className="inputBox">
-                  <input
-                    type={"number"}
-                    value={total}
-                    onChange={(e) => setTotal(e.target.value)}
-                  />
-                  <p>CER</p>
-                </div>
-              </div>
-            </li>
-
-            <li className="rightBorder">
-              <div className="key">Crediting Period</div>
-              <div className="value dateBox">
-                <span className="pickerBox">
-                  <ReactDatePicker
-                    selected={periodStart}
-                    onChange={(date) => setPeriodStart(date)}
-                    customInput={<CustomInput />}
-                  />
-                </span>
-
-                <p>~</p>
-
-                <span className="pickerBox">
-                  <ReactDatePicker
-                    selected={periodEnd}
-                    onChange={(date) => setPeriodEnd(date)}
-                    customInput={<CustomInput />}
-                  />
-                </span>
-              </div>
-            </li>
-
-            <li>
-              <div className="key">Expiry date</div>
-              <div className="value">
-                <div className="value">
-                  <ReactDatePicker
-                    selected={expiry}
-                    onChange={(date) => setExpiry(date)}
-                    customInput={<ExpiryInput />}
-                  />
-                </div>
-              </div>
-            </li>
-
-            <li className="unityRow">
-              <div className="key">Project website</div>
-              <div className="value">
-                <button
-                  className="colorBlue underLine"
-                  onClick={() => window.open("https://www.ecoeye.com")}
-                >
-                  https://www.ecoeye.com
-                </button>
-              </div>
-            </li>
-
-            <li className="unityRow">
-              <div className="key">UNFCCC CDM URL</div>
-              <div className="value">
-                <button
-                  className="colorBlue underLine"
-                  onClick={() =>
-                    window.open(
-                      "https://cdm.unfccc.int/Projects/DB/KEMCO1135749345.69/view"
-                    )
-                  }
-                >
-                  https://cdm.unfccc.int/Projects/DB/KEMCO1135749345.69/view
-                </button>
-              </div>
-            </li>
-
-            <li className="unityRow">
-              <div className="key">Project description</div>
-              <div className="value">
-                <input
-                  className="textInput"
-                  value={desc}
-                  onChange={(e) => setDesc(e.target.value)}
-                />
-              </div>
-            </li>
-          </ul>
-        </article>
-
-        <button className="saveBtn" onClick={() => {}}>
-          SAVE
-        </button>
-      </section>
-
-      <section className="contSec">
-        <article className="inputArea">
-          <strong className="contTitle">eCER Status</strong>
-
-          <ul className="inputList">
-            <li className="rightBorder">
-              <div className="key">CER Symbol</div>
-              <div className="value">
-                <p className="text">BCER</p>
-                <button className="colorBlue" onClick={() => {}}>
+                <p className="text"></p>
+                <button className="contBtn colorBlue" onClick={() => {}}>
                   Contract link
                 </button>
               </div>
             </li>
 
             <li>
-              <div className="key">CER Status</div>
-              <div className="value">
-                <p className="text"></p>
-              </div>
-            </li>
-
-            <li className="rightBorder">
               <div className="key">Contract Name</div>
               <div className="value">
                 <p className="text">Bitcoin CER</p>
               </div>
             </li>
 
-            <li>
+            <li className="unityRow">
               <div className="key">Contract Address</div>
               <div className="value">
                 <p className="text">0xd3C17F958D2ee506206994597C13D83</p>
@@ -254,19 +86,22 @@ export default function CerDet() {
 
           <ul className="inputList">
             <li className="rightBorder">
-              <div className="key">Registration Total</div>
+              <div className="key">Minting Total</div>
               <div className="value">
-                <p className="text">{(1200000).toLocaleString("eu", "US")}</p>
-                <button className="colorBlue" onClick={() => {}}>
-                  Contract link
+                <p className="text"></p>
+                <button
+                  className="colorBlue"
+                  onClick={() => navigate("/ecer/mintlist")}
+                >
+                  Minted link
                 </button>
               </div>
             </li>
 
             <li>
-              <div className="key">Offset Total</div>
+              <div className="key">Incineration Total</div>
               <div className="value">
-                <p className="text">{(200000).toLocaleString("eu", "US")}</p>
+                <p className="text"></p>
                 <button className="colorBlue" onClick={() => {}}>
                   Offset Record
                 </button>
@@ -275,11 +110,11 @@ export default function CerDet() {
           </ul>
         </article>
       </section>
-    </CerDetailBox>
+    </EcerDetBox>
   );
 }
 
-const CerDetailBox = styled.main`
+const EcerDetBox = styled.main`
   width: 1480px;
   margin: 0 0 0 40px;
 
@@ -474,8 +309,8 @@ const CerDetailBox = styled.main`
               height: 38px;
               padding: 0 10px;
               background: rgba(255, 255, 255, 0.06);
-              opacity: 0.25;
               border-radius: 6px;
+              opacity: 0.25;
 
               &:hover,
               &:focus-within {
@@ -502,8 +337,8 @@ const CerDetailBox = styled.main`
                 height: 38px;
                 padding: 0 10px;
                 background: rgba(255, 255, 255, 0.06);
-                opacity: 0.25;
                 border-radius: 6px;
+                opacity: 0.25;
 
                 &:hover,
                 &:focus-within {
@@ -530,19 +365,3 @@ const CerDetailBox = styled.main`
     }
   }
 `;
-
-const CustomInput = forwardRef(({ value, onClick }, ref) => (
-  <button className="customInput" onClick={onClick} ref={ref}>
-    <p>{moment(value).format("YYYY-MM-DD")}</p>
-
-    <img src={I_calanderWhite} alt="" />
-  </button>
-));
-
-const ExpiryInput = forwardRef(({ value, onClick }, ref) => (
-  <button className="customInput" onClick={onClick} ref={ref}>
-    <p>{moment(value).format("DD/MM/YYYY")}</p>
-
-    <img src={I_calanderWhite} alt="" />
-  </button>
-));

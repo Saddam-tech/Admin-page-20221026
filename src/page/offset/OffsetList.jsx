@@ -7,44 +7,40 @@ import PopupBg from "../../components/common/PopupBg";
 import SelectPopup from "../../components/common/SelectPopup";
 import PageNav from "../../components/common/PageNav";
 import { useNavigate } from "react-router-dom";
-import {
-  D_cerList,
-  D_cerListHeader,
-  D_countryList,
-  D_expiryList,
-  D_listSortList,
-  D_pjTypeList,
-  D_searchStatusList,
-} from "../../data/D_cer";
+import { D_cerList, D_listSortList } from "../../data/D_cer";
 import { getExcelFile } from "../../util/Util";
+import ReactDatePicker from "react-datepicker";
+import { D_ecerList, D_ecerListHeader } from "../../data/D_ecer";
+import {
+  D_offsetDetList,
+  D_offsetDetListHeader,
+  D_offsetList,
+  D_offsetListHeader,
+} from "../../data/D_offset";
 
-export default function CerList() {
+export default function OffsetList() {
   const navigate = useNavigate();
 
   const [pjNum, setPjNum] = useState("");
-  const [pjType, setPjType] = useState(D_pjTypeList[0]);
-  const [pjTypePopup, setPjTypePopup] = useState(false);
-  const [status, setStatus] = useState(D_searchStatusList[0]);
-  const [selStatusPopup, setSelStatusPopup] = useState(false);
-  const [country, setCountry] = useState(D_countryList[0]);
-  const [selCountryPopup, setSelCountryPopup] = useState(false);
-  const [expiry, setExpiry] = useState(D_expiryList[0]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [listSort, setListSort] = useState(D_listSortList[0]);
   const [listSortPopup, setListSortPopup] = useState(false);
+  const [detIndex, setDetIndex] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(40);
 
   function onClickExcelBtn() {
-    getExcelFile(D_cerList, "CER_lists");
+    getExcelFile(D_cerList, "offset_lists");
   }
 
   return (
-    <CerListBox>
-      <strong className="pageTitle">CER lists</strong>
+    <OffsetListBox>
+      <strong className="pageTitle">Offset lists</strong>
 
       <section className="searchSec">
         <article className="inputArea">
-          <p className="contTitle">Search CER</p>
+          <p className="contTitle">Search Offset</p>
 
           <ul className="inputList">
             <li className="rightBorder">
@@ -59,101 +55,25 @@ export default function CerList() {
             </li>
 
             <li>
-              <div className="key">Project type</div>
-              <div className="value">
-                <div className="selCont">
-                  <button
-                    className="selBtn"
-                    onClick={() => setPjTypePopup(true)}
-                  >
-                    <p>{pjType}</p>
-                    <img src={I_dnArw_white} alt="" />
-                  </button>
+              <div className="key">Created date</div>
+              <div className="value dateBox">
+                <span className="pickerBox">
+                  <ReactDatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    customInput={<CustomInput />}
+                  />
+                </span>
 
-                  {pjTypePopup && (
-                    <>
-                      <SelectPopup
-                        off={setPjTypePopup}
-                        list={D_pjTypeList}
-                        setCont={setPjType}
-                      />
-                      <PopupBg off={setPjTypePopup} />
-                    </>
-                  )}
-                </div>
-              </div>
-            </li>
+                <p>~</p>
 
-            <li className="rightBorder">
-              <div className="key">CER Status</div>
-              <div className="value">
-                <div className="selCont">
-                  <button
-                    className="selBtn"
-                    onClick={() => setSelStatusPopup(true)}
-                  >
-                    <p>{status}</p>
-                    <img src={I_dnArw_white} alt="" />
-                  </button>
-
-                  {selStatusPopup && (
-                    <>
-                      <SelectPopup
-                        off={setSelStatusPopup}
-                        list={D_searchStatusList}
-                        setCont={setStatus}
-                      />
-                      <PopupBg off={setSelStatusPopup} />
-                    </>
-                  )}
-                </div>
-              </div>
-            </li>
-
-            <li>
-              <div className="key">Host country</div>
-              <div className="value">
-                <div className="selCont">
-                  <button
-                    className="selBtn"
-                    onClick={() => setSelCountryPopup(true)}
-                  >
-                    <p>{country}</p>
-                    <img src={I_dnArw_white} alt="" />
-                  </button>
-
-                  {selCountryPopup && (
-                    <>
-                      <SelectPopup
-                        off={setSelCountryPopup}
-                        list={D_countryList}
-                        setCont={setCountry}
-                      />
-                      <PopupBg off={setSelCountryPopup} />
-                    </>
-                  )}
-                </div>
-              </div>
-            </li>
-
-            <li className="unityRow">
-              <div className="key">Expiry date </div>
-              <div className="value">
-                <ul className="valueList">
-                  {D_expiryList.map((v, i) => (
-                    <li
-                      key={i}
-                      className={`${v === expiry ? "on" : ""}`}
-                      onClick={() => setExpiry(v)}
-                    >
-                      <span className="dotBox">
-                        <span />
-                      </span>
-
-                      <p>{v}</p>
-                    </li>
-                  ))}
-                </ul>
+                <span className="pickerBox">
+                  <ReactDatePicker
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                    customInput={<CustomInput />}
+                  />
+                </span>
               </div>
             </li>
           </ul>
@@ -194,64 +114,85 @@ export default function CerList() {
         </article>
 
         <article className="listArea">
-          <ul className="listHeader">
-            {D_cerListHeader.map((v, i) => (
-              <li key={i}>{v}</li>
-            ))}
-          </ul>
+          <div className="listBox leftBox">
+            <ul className="listHeader">
+              {D_offsetListHeader.map((v, i) => (
+                <li key={i}>{v}</li>
+              ))}
+            </ul>
 
-          <ul className="list">
-            {D_cerList.map((v, i) => (
-              <li key={i}>
-                <span>
-                  <p>{v.id}</p>
-                </span>
-                <span>
-                  <p>{String(v.pjNum).padStart(4, "0")}</p>
-                </span>
-                <span>
-                  <p>{v.pjType}</p>
-                </span>
-                <span>
-                  <p>{v.hostCountry}</p>
-                </span>
-                <span>
-                  <p>{moment(v.expiry).format("YYYY.MM.DD")}</p>
-                </span>
-                <span>
-                  <p>
-                    {`${v.total.toLocaleString(
-                      "eu",
-                      "US"
-                    )}/${v.offset.toLocaleString("eu", "US")}`}
-                  </p>
-                </span>
-                <span>
-                  <p>{v.status}</p>
-                </span>
-                <span>
-                  <button className="detBtn" onClick={() => navigate(`${i}`)}>
-                    [Detail]
-                  </button>
-                  <button
-                    className="reqBtn"
-                    onClick={() => navigate(`/cer/reqlist/${i}`)}
-                  >
-                    [Req.lists]
-                  </button>
-                </span>
-              </li>
-            ))}
-          </ul>
+            <ul className="list">
+              {D_offsetList.map((v, i) => (
+                <li key={i} onClick={() => setDetIndex(i)}>
+                  <span>
+                    <p>{v.no}</p>
+                  </span>
+                  <span>
+                    <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+                  </span>
+                  <span>
+                    <p>{v.id}</p>
+                  </span>
+                  <span>
+                    <p>{v.quantity.toLocaleString("eu", "US")}</p>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {detIndex !== "" && (
+            <div className="listBox rightBox">
+              <ul className="listHeader">
+                {D_offsetDetListHeader.map((v, i) => (
+                  <li key={i}>{v}</li>
+                ))}
+              </ul>
+
+              <ul className="list">
+                {D_offsetDetList.map((v, i) => (
+                  <li key={i}>
+                    <span>
+                      <p>{v.no}</p>
+                    </span>
+                    <span>
+                      <p>{v.symbol}</p>
+                    </span>
+                    <span>
+                      <p>{String(v.pjNum).padStart(4, "0")}</p>
+                    </span>
+                    <span>
+                      <p>{v.quantity.toLocaleString("eu", "US")}</p>
+                    </span>
+                    <span>
+                      <button className="linkBtn" onClick={() => {}}>
+                        [TX ID]
+                      </button>
+                    </span>
+                  </li>
+                ))}
+                <li className="total">
+                  <span></span>
+                  <span></span>
+                  <span>
+                    <p>Offset Total</p>
+                  </span>
+                  <span>
+                    <p>{(111000).toLocaleString("eu", "US")}</p>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          )}
         </article>
 
         <PageNav page={page} setPage={setPage} total={total} />
       </section>
-    </CerListBox>
+    </OffsetListBox>
   );
 }
 
-const CerListBox = styled.main`
+const OffsetListBox = styled.main`
   width: 1480px;
   margin: 0 0 0 40px;
 
@@ -496,81 +437,145 @@ const CerListBox = styled.main`
     }
 
     .listArea {
-      .listHeader {
-        display: flex;
-        align-items: center;
-        height: 50px;
-        padding: 0 10px;
-        background: rgba(255, 255, 255, 0.04);
-        border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
 
-        li {
-        }
-      }
+      gap: 40px;
 
-      .list {
-        li {
+      .listBox {
+        width: 690px;
+
+        .listHeader {
           display: flex;
           align-items: center;
-          height: 44px;
+          height: 50px;
           padding: 0 10px;
-          color: rgba(255, 255, 255, 0.8);
+          background: rgba(255, 255, 255, 0.04);
           border-bottom: 1px solid #333;
 
-          span {
-            &:nth-of-type(8) {
-              display: flex;
-              gap: 14px;
+          li {
+          }
+        }
 
-              .detBtn,
-              .reqBtn {
+        .list {
+          li {
+            display: flex;
+            align-items: center;
+            height: 44px;
+            padding: 0 10px;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid #333;
+
+            span {
+              .linkBtn {
                 color: #45a7ff;
               }
             }
           }
         }
-      }
 
-      .listHeader li,
-      .list li span {
-        p {
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
+        .listHeader li,
+        .list li span {
+          p {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
         }
 
-        &:nth-of-type(1) {
-          width: 104px;
+        &.leftBox {
+          .list {
+            li {
+              cursor: pointer;
+
+              &:hover {
+                background: rgba(255, 255, 255, 0.1);
+              }
+            }
+          }
+
+          .listHeader li,
+          .list li span {
+            &:nth-of-type(1) {
+              width: 62px;
+            }
+
+            &:nth-of-type(2) {
+              width: 190px;
+            }
+
+            &:nth-of-type(3) {
+              width: 202px;
+            }
+
+            &:nth-of-type(4) {
+              flex: 1;
+            }
+          }
         }
 
-        &:nth-of-type(2) {
-          width: 130px;
-        }
+        &.rightBox {
+          .list {
+            li {
+              &.total {
+                border-bottom: none;
 
-        &:nth-of-type(3) {
-          width: 140px;
-        }
+                span {
+                  &:nth-of-type(3) {
+                    border-bottom: 1px solid #333;
+                  }
 
-        &:nth-of-type(4) {
-          width: 156px;
-        }
+                  &:nth-of-type(4) {
+                    border-bottom: 1px solid #333;
+                    background: rgba(255, 255, 255, 0.04);
+                  }
+                }
+              }
+            }
+          }
 
-        &:nth-of-type(5) {
-          width: 192px;
-        }
+          .listHeader li,
+          .list li span {
+            display: flex;
+            align-items: center;
+            height: 100%;
 
-        &:nth-of-type(6) {
-          width: 346px;
-        }
+            &:nth-of-type(1) {
+              width: 62px;
+            }
 
-        &:nth-of-type(7) {
-          width: 140px;
-        }
+            &:nth-of-type(2) {
+              width: 116px;
+            }
 
-        &:nth-of-type(8) {
-          flex: 1;
+            &:nth-of-type(3) {
+              width: 150px;
+              padding: 0 20px 0 0;
+              border-right: 1px solid #333;
+            }
+
+            &:nth-of-type(4) {
+              width: 180px;
+              padding: 0 20px;
+              justify-content: flex-end;
+              border-right: 1px solid #333;
+            }
+
+            &:nth-of-type(5) {
+              flex: 1;
+              justify-content: center;
+            }
+          }
         }
       }
     }
   }
 `;
+
+const CustomInput = forwardRef(({ value, onClick }, ref) => (
+  <button className="customInput" onClick={onClick} ref={ref}>
+    <p>{moment(value).format("YYYY-MM-DD")}</p>
+
+    <img src={I_calanderWhite} alt="" />
+  </button>
+));

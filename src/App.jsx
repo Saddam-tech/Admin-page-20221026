@@ -7,9 +7,12 @@ import GlobalStyle from "./components/common/globalStyle";
 import DefaultHeader from "./components/header/DefaultHeader";
 import DashBoard from "./page/DashBoard";
 import Login from "./page/Login";
-import Member from "./router/member/Membser";
+import Member from "./router/Membser";
 import "react-datepicker/dist/react-datepicker.css";
-import Cer from "./router/cer/Cer";
+import Cer from "./router/Cer";
+import Ecer from "./router/Ecer";
+import Offset from "./router/Offset";
+import Setup from "./router/Setup";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -41,6 +44,9 @@ export default function App() {
               <Route path="/dashboard" element={<DashBoard />} />
               <Route path="/member/*" element={<Member />} />
               <Route path="/cer/*" element={<Cer />} />
+              <Route path="/ecer/*" element={<Ecer />} />
+              <Route path="/offset/*" element={<Offset />} />
+              <Route path="/setup/*" element={<Setup />} />
             </Routes>
           </>
         ) : (

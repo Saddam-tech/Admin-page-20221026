@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Det from "../../page/member/Det";
-import Secession from "../../page/member/Secession";
-import Use from "../../page/member/Use";
+import Det from "../page/member/Det";
+import Secession from "../page/member/Secession";
+import Use from "../page/member/Use";
 
 export default function Member() {
   return (

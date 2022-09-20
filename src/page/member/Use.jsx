@@ -150,13 +150,27 @@ export default function Use() {
           <ul className="list">
             {D_searchedList.map((v, i) => (
               <li key={i} onClick={() => navigate(`/member/det/${i}`)}>
-                <span>{v.memberId}</span>
-                <span>{v.loginId}</span>
-                <span>{v.name}</span>
-                <span>{v.number}</span>
-                <span>{v.status}</span>
-                <span>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</span>
-                <span>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</span>
+                <span>
+                  <p>{v.memberId}</p>
+                </span>
+                <span>
+                  <p>{v.loginId}</p>
+                </span>
+                <span>
+                  <p>{v.name}</p>
+                </span>
+                <span>
+                  <p>{v.number}</p>
+                </span>
+                <span>
+                  <p>{v.status}</p>
+                </span>
+                <span>
+                  <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+                </span>
+                <span>
+                  <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+                </span>
               </li>
             ))}
           </ul>
@@ -234,6 +248,7 @@ const UesBox = styled.main`
               flex: 1;
               padding: 0 10px;
               height: 100%;
+              border-radius: 6px;
 
               &:focus-within {
                 background: rgba(255, 255, 255, 0.06);
@@ -253,6 +268,7 @@ const UesBox = styled.main`
                 width: 100%;
                 height: 100%;
                 padding: 0 10px;
+                border-radius: 6px;
 
                 &:focus-within {
                   background: rgba(255, 255, 255, 0.06);
@@ -275,6 +291,7 @@ const UesBox = styled.main`
                 height: 38px;
                 padding: 0 10px;
                 background: rgba(255, 255, 255, 0.06);
+                border-radius: 6px;
                 opacity: 0.25;
 
                 &:hover,
@@ -343,6 +360,12 @@ const UesBox = styled.main`
 
       .listHeader li,
       .list li span {
+        p {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
         &:nth-of-type(1) {
           width: 126px;
         }

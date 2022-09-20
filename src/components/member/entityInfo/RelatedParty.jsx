@@ -44,13 +44,27 @@ export default function RelatedParty({ category, setCategory }) {
           <ul className="list">
             {D_relatedPartyList.map((v, i) => (
               <li key={i}>
-                <span>{v.name}</span>
-                <span>{moment(v.birth).format("YYYY.MM.DD")}</span>
-                <span>{v.jurisdiction}</span>
-                <span>{v.email}</span>
-                <span>{v.id}</span>
-                <span>{v.countryOfIssue}</span>
-                <span>{v.class}</span>
+                <span>
+                  <p>{v.name}</p>
+                </span>
+                <span>
+                  <p>{moment(v.birth).format("YYYY.MM.DD")}</p>
+                </span>
+                <span>
+                  <p>{v.jurisdiction}</p>
+                </span>
+                <span>
+                  <p>{v.email}</p>
+                </span>
+                <span>
+                  <p>{v.id}</p>
+                </span>
+                <span>
+                  <p>{v.countryOfIssue}</p>
+                </span>
+                <span>
+                  <p>{v.class}</p>
+                </span>
                 <span>
                   <button
                     className="docBtn"
@@ -158,6 +172,12 @@ const RelatedPartyBox = styled.main`
 
     .listHeader li,
     .list li span {
+      p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
       &:nth-of-type(1) {
         width: 94px;
       }

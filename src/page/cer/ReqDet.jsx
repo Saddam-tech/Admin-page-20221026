@@ -1,8 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
+import BasicInfo from "../../components/cer/reqDet/BasicInfo";
 import ReqInfo from "../../components/cer/reqDet/ReqInfo";
-import EntityInfo from "../../components/member/entityInfo/EntityInfo";
-import UserInfo from "../../components/member/userInfo/UserInfo";
 import { D_reqDetCategoryList } from "../../data/D_cer";
 
 export default function ReqDet() {
@@ -25,7 +24,7 @@ export default function ReqDet() {
       </ul>
 
       {category === "Request Info." ? <ReqInfo /> : <></>}
-      {category === "CER basic info." ? <EntityInfo /> : <></>}
+      {category === "CER basic info." ? <BasicInfo /> : <></>}
     </ReqDetBox>
   );
 }

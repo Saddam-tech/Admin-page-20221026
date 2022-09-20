@@ -16,6 +16,7 @@ import {
   D_searchStatusList,
 } from "../../data/D_cer";
 import ReactDatePicker from "react-datepicker";
+import { getExcelFile } from "../../util/Util";
 
 export default function ReqList() {
   const navigate = useNavigate();
@@ -34,6 +35,10 @@ export default function ReqList() {
   const [listSortPopup, setListSortPopup] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(40);
+
+  function onClickExcelBtn() {
+    getExcelFile(D_reqList, "CER_lists");
+  }
 
   return (
     <ReqListBox>
@@ -176,7 +181,7 @@ export default function ReqList() {
 
       <section className="searchedSec">
         <article className="topArea">
-          <p className="contTitle">Total 2 CER lists</p>
+          <p className="contTitle">Total {total} Records</p>
 
           <div className="utilBox">
             <div className="selCont">
@@ -197,7 +202,7 @@ export default function ReqList() {
               )}
             </div>
 
-            <button className="excelBtn" onClick={() => {}}>
+            <button className="excelBtn" onClick={onClickExcelBtn}>
               EXCEL
             </button>
           </div>
@@ -213,15 +218,33 @@ export default function ReqList() {
           <ul className="list">
             {D_reqList.map((v, i) => (
               <li key={i} onClick={() => navigate(`${i}`)}>
-                <span>{v.no}</span>
-                <span>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</span>
-                <span>{String(v.pjNum).padStart(4, "0")}</span>
-                <span>{v.pjType}</span>
-                <span>{v.hostCountry}</span>
-                <span>{v.quantity.toLocaleString("eu", "US")}</span>
-                <span>{v.memberId}</span>
-                <span>{v.managerId}</span>
-                <span>{v.status}</span>
+                <span>
+                  <p>{v.no}</p>
+                </span>
+                <span>
+                  <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+                </span>
+                <span>
+                  <p>{String(v.pjNum).padStart(4, "0")}</p>
+                </span>
+                <span>
+                  <p>{v.pjType}</p>
+                </span>
+                <span>
+                  <p>{v.hostCountry}</p>
+                </span>
+                <span>
+                  <p>{v.quantity.toLocaleString("eu", "US")}</p>
+                </span>
+                <span>
+                  <p>{v.memberId}</p>
+                </span>
+                <span>
+                  <p>{v.managerId}</p>
+                </span>
+                <span>
+                  <p>{v.status}</p>
+                </span>
               </li>
             ))}
           </ul>
@@ -350,6 +373,7 @@ const ReqListBox = styled.main`
               flex: 1;
               padding: 0 10px;
               height: 100%;
+              border-radius: 6px;
 
               &:focus-within {
                 background: rgba(255, 255, 255, 0.06);
@@ -369,6 +393,7 @@ const ReqListBox = styled.main`
                 width: 100%;
                 height: 100%;
                 padding: 0 10px;
+                border-radius: 6px;
 
                 &:focus-within {
                   background: rgba(255, 255, 255, 0.06);
@@ -391,6 +416,7 @@ const ReqListBox = styled.main`
                 height: 38px;
                 padding: 0 10px;
                 background: rgba(255, 255, 255, 0.06);
+                border-radius: 6px;
                 opacity: 0.25;
 
                 &:hover,
@@ -505,6 +531,12 @@ const ReqListBox = styled.main`
 
       .listHeader li,
       .list li span {
+        p {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
         &:nth-of-type(1) {
           width: 62px;
         }

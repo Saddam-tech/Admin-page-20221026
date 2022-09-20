@@ -11,7 +11,7 @@ import RejectPopup from "./RejectPopup";
 import ContractPopup from "./ContractPopup";
 import MintingPopup from "./MintingPopup";
 
-export default function ReqInfo() {
+export default function BasicInfo() {
   const [addDate, setAddDate] = useState(new Date());
   const [listDate, setListDate] = useState(new Date());
   const [category, setCategory] = useState(D_reqInfoDetCategoryList[0]);
@@ -27,38 +27,6 @@ export default function ReqInfo() {
           <article className="infoArea">
             <ul className="inputList">
               <li className="rightBorder">
-                <div className="key">Request date</div>
-                <div className="value">
-                  <p className="text">
-                    {moment().format("YYYY.MM.DD HH:mm:SS")}
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <div className="key">Status</div>
-                <div className="value">
-                  <p className="text">Waiting</p>
-                </div>
-              </li>
-
-              <li className="rightBorder">
-                <div className="key">Member ID</div>
-                <div className="value">
-                  <p className="text colorBlue underLine">
-                    evil@gmail.com (Member ID : 00012)
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <div className="key">Member Name</div>
-                <div className="value">
-                  <p className="text">Horizen lnc.</p>
-                </div>
-              </li>
-
-              <li className="rightBorder">
                 <div className="key">Project No</div>
                 <div className="value">
                   <p className="text">{String(222).padStart(4, "0")}</p>
@@ -73,119 +41,94 @@ export default function ReqInfo() {
               </li>
 
               <li className="rightBorder">
-                <div className="key">CER quantity</div>
+                <div className="key">Project Title</div>
                 <div className="value">
-                  <p className="value">{(100000).toLocaleString("eu", "US")}</p>
+                  <p className="text">Gangwon Wind Park Project</p>
                 </div>
               </li>
 
               <li>
-                <div className="key">Accept the terms</div>
-                <div className="value">
-                  <p className="text">YES</p>
-                </div>
-              </li>
-
-              <li className="rightBorder">
-                <div className="key">Approved date</div>
-                <div className="value">
-                  <div className="btnBox">
-                    <button
-                      className="approveBtn"
-                      onClick={() => setApprovePopup(true)}
-                    >
-                      Approve
-                    </button>
-                    <button
-                      className="rejectBtn"
-                      onClick={() => setRejectPopup(true)}
-                    >
-                      Reject
-                    </button>
-                  </div>
-                </div>
-              </li>
-
-              <li>
-                <div className="key">Approval manager</div>
+                <div className="key">Industry</div>
                 <div className="value">
                   <p className="text"></p>
                 </div>
               </li>
 
               <li className="rightBorder">
-                <div className="key">Created Date</div>
+                <div className="key">Host country</div>
                 <div className="value">
-                  <div className="btnBox">
-                    <button
-                      className="contractBtn"
-                      onClick={() => setContractPopup(true)}
-                    >
-                      Smart contract
-                    </button>
-                  </div>
+                  <p className="text">Korea</p>
                 </div>
               </li>
 
               <li>
-                <div className="key">Creation manager</div>
+                <div className="key">Project type</div>
+                <div className="value">
+                  <p className="text">Wind</p>
+                </div>
+              </li>
+
+              <li className="rightBorder">
+                <div className="key">Methodologies</div>
+                <div className="value">
+                  <p className="text">{(100000).toLocaleString("eu", "US")}</p>
+                </div>
+              </li>
+
+              <li>
+                <div className="key">Total CER</div>
+                <div className="value">
+                  <p className="text">{`${(149536).toLocaleString(
+                    "eu",
+                    "US"
+                  )} CER`}</p>
+                </div>
+              </li>
+
+              <li className="rightBorder">
+                <div className="key">Crediting Period</div>
                 <div className="value">
                   <p className="text"></p>
                 </div>
               </li>
 
-              <li className="rightBorder">
-                <div className="key">Added date</div>
-                <div className="value">
-                  <ReactDatePicker
-                    selected={addDate}
-                    onChange={(date) => setAddDate(date)}
-                    customInput={<CustomInput />}
-                  />
-                </div>
-              </li>
-
               <li>
-                <div className="key">Add manager</div>
+                <div className="key">Expiry date</div>
                 <div className="value">
-                  <p className="text">evil@gmail.com</p>
+                  <p className="text">{moment().format("DD/mm/YYYY")}</p>
                 </div>
               </li>
 
-              <li className="rightBorder">
-                <div className="key">Listed date</div>
+              <li className="unityRow">
+                <div className="key">Project website</div>
                 <div className="value">
-                  <ReactDatePicker
-                    selected={listDate}
-                    onChange={(date) => setListDate(date)}
-                    customInput={<CustomInput />}
-                  />
+                  <button
+                    className="colorBlue underLine"
+                    onClick={() => window.open("https://www.ecoeye.com")}
+                  >
+                    https://www.ecoeye.com
+                  </button>
                 </div>
               </li>
 
-              <li>
-                <div className="key">Listing manager</div>
+              <li className="unityRow">
+                <div className="key">UNFCCC CDM URL</div>
                 <div className="value">
-                  <p className="text"></p>
+                  <button
+                    className="colorBlue underLine"
+                    onClick={() =>
+                      window.open(
+                        "https://cdm.unfccc.int/Projects/DB/KEMCO1135749345.69/view"
+                      )
+                    }
+                  >
+                    https://cdm.unfccc.int/Projects/DB/KEMCO1135749345.69/view
+                  </button>
                 </div>
               </li>
 
-              <li className="rightBorder">
-                <div className="key">Minted date</div>
-                <div className="value">
-                  <div className="btnBox">
-                    <button
-                      className="mintBtn"
-                      onClick={() => setMintingPopup(true)}
-                    >
-                      Minting
-                    </button>
-                  </div>
-                </div>
-              </li>
-
-              <li>
-                <div className="key">Minting manager</div>
+              <li className="unityRow">
+                <div className="key">Project description</div>
                 <div className="value">
                   <p className="text"></p>
                 </div>
@@ -194,38 +137,93 @@ export default function ReqInfo() {
           </article>
         </section>
 
-        {category === "Reject" && (
-          <Reject category={category} setCategory={setCategory} />
-        )}
+        <section className="infoSec">
+          <article className="infoArea">
+            <strong className="contTitle">eCER Status</strong>
+
+            <ul className="inputList">
+              <li className="rightBorder">
+                <div className="key">CER Symbol</div>
+                <div className="value">
+                  <p className="text"></p>
+                  <button
+                    className="contractLinkBtn colorBlue"
+                    onClick={() => {}}
+                  >
+                    Contract link
+                  </button>
+                </div>
+              </li>
+
+              <li>
+                <div className="key">CER Status</div>
+                <div className="value">
+                  <p className="text"></p>
+                </div>
+              </li>
+
+              <li className="rightBorder">
+                <div className="key">Contract Name</div>
+                <div className="value">
+                  <p className="text">Bitcoin CER</p>
+                </div>
+              </li>
+
+              <li>
+                <div className="key">Contract Address</div>
+                <div className="value">
+                  <p className="text">0xd3C17F958D2ee506206994597C13D83</p>
+                </div>
+              </li>
+
+              <li className="rightBorder">
+                <div className="key">Created Date</div>
+                <div className="value">
+                  <p className="text"></p>
+                </div>
+              </li>
+
+              <li>
+                <div className="key">Creation Manager</div>
+                <div className="value">
+                  <p className="text"></p>
+                </div>
+              </li>
+
+              <li className="rightBorder">
+                <div className="key">Added Date</div>
+                <div className="value">
+                  <p className="text"></p>
+                </div>
+              </li>
+
+              <li>
+                <div className="key">Add Manager</div>
+                <div className="value">
+                  <p className="text">{`${(149536).toLocaleString(
+                    "eu",
+                    "US"
+                  )} CER`}</p>
+                </div>
+              </li>
+
+              <li className="rightBorder">
+                <div className="key">Listed Date</div>
+                <div className="value">
+                  <p className="text"></p>
+                </div>
+              </li>
+
+              <li>
+                <div className="key">Listing Manager</div>
+                <div className="value">
+                  <p className="text"></p>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </section>
       </ReqInfoBox>
-
-      {approvePopup && (
-        <>
-          <ApprovePopup off={setApprovePopup} />
-          <PopupBg bg blur off={setApprovePopup} />
-        </>
-      )}
-
-      {rejectPopup && (
-        <>
-          <RejectPopup off={setRejectPopup} />
-          <PopupBg bg blur off={setRejectPopup} />
-        </>
-      )}
-
-      {contractPopup && (
-        <>
-          <ContractPopup off={setContractPopup} />
-          <PopupBg bg blur off={setContractPopup} />
-        </>
-      )}
-
-      {mintingPopup && (
-        <>
-          <MintingPopup off={setMintingPopup} />
-          <PopupBg bg blur off={setMintingPopup} />
-        </>
-      )}
     </>
   );
 }

@@ -14,14 +14,30 @@ export default function CerRegist() {
       <ul className="list">
         {D_cerRegistList.map((v, i) => (
           <li key={i}>
-            <span>{v.no}</span>
-            <span>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</span>
-            <span>{v.projectNo}</span>
-            <span>{v.symbol}</span>
-            <span>{v.quantity.toLocaleString("eu", "US")}</span>
-            <span>{v.memberId}</span>
-            <span>{v.managerId}</span>
-            <span>{v.status}</span>
+            <span>
+              <p>{v.no}</p>
+            </span>
+            <span>
+              <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+            </span>
+            <span>
+              <p>{v.projectNo}</p>
+            </span>
+            <span>
+              <p>{v.symbol}</p>
+            </span>
+            <span>
+              <p>{v.quantity.toLocaleString("eu", "US")}</p>
+            </span>
+            <span>
+              <p>{v.memberId}</p>
+            </span>
+            <span>
+              <p>{v.managerId}</p>
+            </span>
+            <span>
+              <p>{v.status}</p>
+            </span>
           </li>
         ))}
       </ul>
@@ -64,6 +80,12 @@ const CerRegistBox = styled.article`
 
   .listHeader li,
   .list li span {
+    p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     &:nth-of-type(1) {
       width: 72px;
     }

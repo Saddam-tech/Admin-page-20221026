@@ -264,6 +264,7 @@ const UserInfoBox = styled.main`
               flex: 1;
               padding: 0 10px;
               height: 100%;
+              border-radius: 6px;
 
               &:focus-within {
                 background: rgba(255, 255, 255, 0.06);
@@ -283,6 +284,7 @@ const UserInfoBox = styled.main`
                 width: 100%;
                 height: 100%;
                 padding: 0 10px;
+                border-radius: 6px;
 
                 &:focus-within {
                   background: rgba(255, 255, 255, 0.06);
@@ -306,6 +308,7 @@ const UserInfoBox = styled.main`
                 padding: 0 10px;
                 background: rgba(255, 255, 255, 0.06);
                 opacity: 0.25;
+                border-radius: 6px;
 
                 &:hover,
                 &:focus-within {

@@ -17,12 +17,24 @@ export default function DocumentList() {
       <ul className="list">
         {D_documentList.map((v, i) => (
           <li key={i} onClick={() => navigate(`/member/det/${i}`)}>
-            <span>{v.no}</span>
-            <span>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</span>
-            <span>{v.id}</span>
-            <span>{v.name}</span>
-            <span>{v.number}</span>
-            <span>{v.jurisdiction}</span>
+            <span>
+              <p>{v.no}</p>
+            </span>
+            <span>
+              <p>{moment(v.date).format("YYYY.MM.DD HH:mm:SS")}</p>
+            </span>
+            <span>
+              <p>{v.id}</p>
+            </span>
+            <span>
+              <p>{v.name}</p>
+            </span>
+            <span>
+              <p>{v.number}</p>
+            </span>
+            <span>
+              <p>{v.jurisdiction}</p>
+            </span>
           </li>
         ))}
       </ul>
@@ -64,6 +76,12 @@ const DocumentListBox = styled.article`
 
   .listHeader li,
   .list li span {
+    p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     &:nth-of-type(1) {
       width: 72px;
     }

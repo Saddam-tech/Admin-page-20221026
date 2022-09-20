@@ -91,6 +91,7 @@ const NavBarBox = styled.aside`
         opacity: 1;
       }
 
+      &[open],
       &.on {
         opacity: 1;
         background: #000;

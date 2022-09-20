@@ -32,13 +32,25 @@ export const D_navList = [
   {
     text: "eCER",
     icon: I_ecer,
+    url: "ecer",
+    det: [
+      { text: "eCER lists", url: "ecerlist" },
+      { text: "Minted lists", url: "mintlist" },
+    ],
   },
   {
     text: "Offset",
     icon: I_offset,
+    url: "offset",
+    det: [
+      { text: "Offset lists", url: "offsetlist" },
+      { text: "Offset Prolect lists", url: "prolectlist" },
+    ],
   },
   {
     text: "Setup",
     icon: I_setup,
+    url: "setup",
+    det: [{ text: "Fee setting", url: "fee" }],
   },
 ];

@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import CerDet from "../../page/cer/CerDet";
-import CerList from "../../page/cer/CerList";
-import ReqDet from "../../page/cer/ReqDet";
-import ReqList from "../../page/cer/ReqList";
+import CerDet from "../page/cer/CerDet";
+import CerList from "../page/cer/CerList";
+import ReqDet from "../page/cer/ReqDet";
+import ReqList from "../page/cer/ReqList";
 
 export default function Cer() {
   return (
