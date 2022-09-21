@@ -72,7 +72,7 @@ export default function Secession() {
               </div>
             </li>
 
-            <li>
+            <li className="unityRow">
               <div className="key">Registration date</div>
               <div className="value dateBox">
                 <span className="pickerBox">
@@ -272,6 +272,14 @@ const SecessionBox = styled.main`
                   width: 18px;
                 }
               }
+            }
+          }
+
+          &.unityRow {
+            width: 1420px;
+
+            .dateBox {
+              max-width: 460px;
             }
           }
         }

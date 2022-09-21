@@ -3,6 +3,8 @@ import I_rtArw_white from "../../asset/icon/I_rtArw_white.svg";
 import I_ltArw_white from "../../asset/icon/I_ltArw_white.svg";
 
 export default function PageNav({ page, setPage, total }) {
+  let pageRange = Math.floor((page - 1) / 3) * 3;
+
   return (
     <PageBox className="pageBox">
       <button
@@ -14,16 +16,15 @@ export default function PageNav({ page, setPage, total }) {
       </button>
 
       <ul className="pageList">
-        {new Array(Math.ceil(total / 10)).fill("").map(
+        {[pageRange + 1, pageRange + 2, pageRange + 3].map(
           (v, i) =>
-            i > page - 4 &&
-            i < page + 2 && (
+            v <= Math.ceil(total / 10) && (
               <li
                 key={i}
-                className={`${i + 1 === page && "on"}`}
+                className={`${v === page && "on"}`}
                 onClick={() => setPage(i + 1)}
               >
-                <strong>{i + 1}</strong>
+                <strong>{v}</strong>
               </li>
             )
         )}

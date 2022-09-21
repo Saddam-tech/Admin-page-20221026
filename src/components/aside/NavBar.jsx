@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import L_logoMin from "../../asset/logo/L_logoMin.png";
@@ -6,6 +7,18 @@ import { D_navList } from "../../data/D_Aside";
 export default function NavBar() {
   const navigate = useNavigate();
   const pathname = useLocation().pathname.split("/");
+
+  useEffect(() => {
+    const details = document.querySelectorAll("details");
+
+    details.forEach((targetDetail) => {
+      targetDetail.addEventListener("click", () => {
+        details.forEach(
+          (detail) => detail !== targetDetail && detail.removeAttribute("open")
+        );
+      });
+    });
+  }, []);
 
   return (
     <NavBarBox>
