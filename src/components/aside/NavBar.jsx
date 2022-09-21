@@ -28,11 +28,7 @@ export default function NavBar() {
 
       <nav>
         {D_navList.map((v, i) => (
-          <details
-            key={i}
-            className={`${v.url && v.url.indexOf(pathname[1]) !== -1 && "on"}`}
-            open={v.url && v.url.indexOf(pathname[1]) !== -1}
-          >
+          <details key={i} open={v.url === pathname[1]}>
             <summary>
               <div
                 className="summaryBox"

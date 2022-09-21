@@ -56,7 +56,7 @@ const PageBox = styled.div`
     border-radius: 4px;
 
     &:disabled {
-      display: none;
+      opacity: 0.3;
     }
 
     img {

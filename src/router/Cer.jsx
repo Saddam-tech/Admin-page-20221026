@@ -7,9 +7,9 @@ import ReqList from "../page/cer/ReqList";
 export default function Cer() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/cer/cerlist" />} />
-      <Route path="/cerlist" element={<CerList />} />
-      <Route path="/cerlist/:id" element={<CerDet />} />
+      <Route path="/" element={<Navigate to="/cer/uselist" />} />
+      <Route path="/uselist" element={<CerList />} />
+      <Route path="/uselist/:id" element={<CerDet />} />
       <Route path="/reqlist" element={<ReqList />} />
       <Route path="/reqlist/:id" element={<ReqDet />} />
     </Routes>
