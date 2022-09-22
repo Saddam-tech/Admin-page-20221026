@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { D_cerRegistList, D_cerRegistListHeader } from "../../data/D_dashboard";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 export default function CerRegist() {
+  const navigate = useNavigate();
+
   return (
     <CerRegistBox>
       <ul className="listHeader">
@@ -13,7 +16,7 @@ export default function CerRegist() {
 
       <ul className="list">
         {D_cerRegistList.map((v, i) => (
-          <li key={i}>
+          <li key={i} onClick={() => navigate(`/cer/reqlist/${i}`)}>
             <span>
               <p>{v.no}</p>
             </span>

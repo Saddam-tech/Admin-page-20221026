@@ -26,7 +26,7 @@ export const D_navList = [
     url: "cer",
     det: [
       { text: "In use Users", url: "uselist" },
-      { text: "Secession Users", url: "reqlist" },
+      { text: "Request lists", url: "reqlist" },
     ],
   },
   {
